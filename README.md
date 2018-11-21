@@ -20,3 +20,6 @@
 * POST [API_URL]/favorite/{soundId}
 * DELETE [API_URL]/favorite/{soundId}
 * GET [API_URL]categories
+
+# Notes
+* After successful login header "X-Token" parameter should send with all request with a value of users api_token.
