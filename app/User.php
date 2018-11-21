@@ -2,14 +2,11 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
 
     /**
@@ -42,7 +39,7 @@ class User extends Authenticatable
                 ->exists();
         }
 
-        $this->api_token_expires_at = \Carbon\Carbon::now()->addHour(4);
+        $this->api_token_expires_at = Carbon::now()->addHour(4);
         return $this->save();
     }
 }
