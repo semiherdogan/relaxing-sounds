@@ -70,7 +70,7 @@ curl --request DELETE \
 ```
 
  # Error Codes
- * Can be found in 
+ * Can be found in [ErrorCodes.php](https://github.com/semiherdogan/relaxing-sounds/blob/master/app/Webservice/ErrorCodes.php)
  
  | errorCode | errorMessage |
  | :--- | :--- |
