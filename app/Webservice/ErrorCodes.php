@@ -19,7 +19,7 @@ abstract class ErrorCodes
     const LOGIN_USER_NOT_EXISTS = 10;
     const LOGIN_USER_NOT_EXISTS_MESSAGE = 'User not exists';
 
-    const REGISTER_USER_EXISTS = 12;
+    const REGISTER_USER_EXISTS = 11;
     const REGISTER_USER_EXISTS_MESSAGE = 'User already exists';
 
     const SOUND_NOT_FOUND = 20;

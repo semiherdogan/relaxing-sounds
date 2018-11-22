@@ -12,7 +12,6 @@
 * `php artisan migrate`
 
 # Routes
-* GET [API_URL]/app_status
 * POST [API_URL]/register
 * POST [API_URL]/login
 * POST [API_URL]/logout
@@ -23,7 +22,7 @@
 * DELETE [API_URL]/favorite/{soundId}
 
 # Notes
-* After successful login header "X-Token" parameter should send with all requests with a value of users api_token.
+* After successful login, header "X-Token" parameter should send with all requests with a value of user's api_token.
 
 # Requests
 * Register
@@ -81,4 +80,17 @@ curl --request DELETE \
 ```
 
  # Error Codes
+ * Can be found in 
+ 
+ | errorCode | errorMessage |
+ | :--- | :--- |
+ | 0   | Success |
+ | 2   | Api token invalid |
+ | 10  | User not found |
+ | 11  | User already exists |
+ | 20  | Sound not found |
+ | 30  | Invalid or missing parameters |
+ | 404 | Api method not exists |
+ | 405 | Http method not allowed |
+ | 500 | Server error |
  
