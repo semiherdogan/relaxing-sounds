@@ -19,10 +19,11 @@
 * GET [API_URL]/favorites
 * POST [API_URL]/favorite/{soundId}
 * DELETE [API_URL]/favorite/{soundId}
-* GET [API_URL]categories
+* GET [API_URL]/categories
+* GET [API_URL]/categories/{categoryId}
 
 # Notes
-* After successful login header "X-Token" parameter should send with all request with a value of users api_token.
+* After successful login header "X-Token" parameter should send with all requests with a value of users api_token.
 
 
 # Request Examples
@@ -39,3 +40,6 @@
          --form appuid=xxxxx \
          --form app_version=1.2 \
          --form language_version=1.2`
+ 
+ # Error Codes
+ 
