@@ -25,21 +25,60 @@
 # Notes
 * After successful login header "X-Token" parameter should send with all requests with a value of users api_token.
 
-
-# Request Examples
+# Requests
 * Register
-    * `curl --request POST \
-         --url http://relax.test/api/register \
-         --form appuid=xxxxx \
-         --form app_version=1.12 \
-         --form language_version=1.12 \
-         --form app_language=en`
+```bash
+curl --request POST \
+ --url [API_URL]/register \
+ --form appuid=xxxxx \
+ --form app_version=1.12 \
+ --form language_version=1.12 \
+ --form app_language=en
+```
+
 * Login
-    * `curl --request POST \
-         --url http://relax.test/api/login \
-         --form appuid=xxxxx \
-         --form app_version=1.2 \
-         --form language_version=1.2`
- 
+```bash
+curl --request POST \
+    --url [API_URL]/login \
+    --form appuid=xxxxx \
+    --form app_version=1.2 \
+    --form language_version=1.2
+```
+
+* Categories
+```bash
+curl --request GET \
+  --url [API_URL]/categories \
+  --header 'X-Token: XXXX'
+```
+
+* Sounds
+```bash
+curl --request GET \
+  --url [API_URL]/categories/1 \
+  --header 'X-Token: XXXX'
+```
+
+* Favorites
+```bash
+curl --request GET \
+  --url [API_URL]/favorites \
+  --header 'x-token: XXXX'
+```
+
+* Favorite ADD
+```bash
+curl --request POST \
+  --url [API_URL]/favorites/1 \
+  --header 'x-token: XXXX'
+```
+
+* Favorite REMOVE
+```bash
+curl --request DELETE \
+  --url [API_URL]/favorites/1 \
+  --header 'x-token: XXXX'
+```
+
  # Error Codes
  
