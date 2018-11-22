@@ -2,8 +2,12 @@
 
 namespace App\Exceptions;
 
+use App\Webservice\ErrorCodes;
+use App\Webservice\Response;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -42,10 +46,27 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
+        // If api url not found
+        if ($exception instanceof NotFoundHttpException) {
+            return Response::fail(
+                ErrorCodes::METHOD_NOT_EXISTS,
+                ErrorCodes::METHOD_NOT_EXISTS_MESSAGE
+            );
+        }
+
+
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return Response::fail(
+                ErrorCodes::METHOD_NOT_ALLOWED,
+                ErrorCodes::METHOD_NOT_ALLOWED_MESSAGE
+            );
+        }
+
+
         return parent::render($request, $exception);
     }
 }
