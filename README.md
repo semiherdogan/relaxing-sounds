@@ -16,11 +16,11 @@
 * POST [API_URL]/register
 * POST [API_URL]/login
 * POST [API_URL]/logout
+* GET [API_URL]/categories
+* GET [API_URL]/categories/{categoryId}
 * GET [API_URL]/favorites
 * POST [API_URL]/favorite/{soundId}
 * DELETE [API_URL]/favorite/{soundId}
-* GET [API_URL]/categories
-* GET [API_URL]/categories/{categoryId}
 
 # Notes
 * After successful login header "X-Token" parameter should send with all requests with a value of users api_token.

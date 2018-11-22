@@ -25,10 +25,18 @@ abstract class ErrorCodes
     const REGISTER_USER_EXISTS = 12;
     const REGISTER_USER_EXISTS_MESSAGE = 'User already exists';
 
+    const SOUND_NOT_FOUND = 20;
+    const SOUND_NOT_FOUND_MESSAGE = 'Sound not found';
 
     const PARAMETER_INVALID = 13;
     const PARAMETER_INVALID_MESSAGE = 'Invalid or missing parameters';
 
     const METHOD_NOT_EXISTS = 404;
     const METHOD_NOT_EXISTS_MESSAGE = 'Api method not exists';
+
+    const METHOD_NOT_ALLOWED = 405;
+    const METHOD_NOT_ALLOWED_MESSAGE = 'Http method not allowed';
+
+    const SERVER_ERROR = 500;
+    const SERVER_ERROR_MESSAGE = 'Server error';
 }

@@ -93,4 +93,37 @@ class User extends Authenticatable
 
         return $validator->passes();
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+     * Returns users favorite sounds.
+     */
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    /**
+     * @param $soundId
+     * @return
+     */
+    public function favored($soundId)
+    {
+        return Favorite::create([
+            'user_id' => $this->id,
+            'sound_id' => $soundId
+        ]);
+    }
+
+    /**
+     * @param $soundId
+     * @return bool
+     */
+    public function unFavored($soundId)
+    {
+        return Favorite::where('user_id', $this->id)
+            ->where('sound_id', $soundId)
+            ->delete();
+    }
 }

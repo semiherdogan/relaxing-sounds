@@ -21,4 +21,11 @@ Route::group(['middleware' => 'api_auth'], function () {
     Route::get('categories', 'CategoriesController@index');
 
     Route::get('categories/{categoryId}', 'SoundsController@index');
+
+    Route::prefix('favorites')->group(function () {
+        //
+        Route::get('/', 'FavoritesController@index');
+        Route::post('/{soundId}', 'FavoritesController@store');
+        Route::delete('/{soundId}', 'FavoritesController@delete');
+    });
 });
