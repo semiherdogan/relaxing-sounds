@@ -19,9 +19,16 @@ abstract class ErrorCodes
     const USER_NOT_FOUND = 10;
     const USER_NOT_FOUND_MESSAGE = 'User not found';
 
-    const REGISTER_USER_EXISTS = 11;
-    const REGISTER_USER_EXISTS_MESSAGE = 'User exists';
+    const LOGIN_USER_NOT_EXISTS = 11;
+    const LOGIN_USER_NOT_EXISTS_MESSAGE = 'User not exists';
 
-    const REGISTER_PARAMETER_INVALID = 12;
-    const REGISTER_PARAMETER_INVALID_MESSAGE = 'Invalid or missing parameters';
+    const REGISTER_USER_EXISTS = 12;
+    const REGISTER_USER_EXISTS_MESSAGE = 'User already exists';
+
+
+    const PARAMETER_INVALID = 13;
+    const PARAMETER_INVALID_MESSAGE = 'Invalid or missing parameters';
+
+    const METHOD_NOT_EXISTS = 404;
+    const METHOD_NOT_EXISTS_MESSAGE = 'Api method not exists';
 }

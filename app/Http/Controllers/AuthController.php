@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Webservice\ErrorCodes;
 use App\Webservice\Response;
+use App\Webservice\WSHelper;
 use Illuminate\Http\Request;
 
 
@@ -18,15 +19,18 @@ class AuthController extends Controller
             'language_version'
         );
 
-        $userExists = User::validateForLogin($loginParameters);
-        if (!$userExists) {
+        // Validate Parameters
+        $userHasValidParameters = User::validateForLogin($loginParameters);
+        if (!$userHasValidParameters) {
             return Response::fail(
-                ErrorCodes::USER_NOT_FOUND,
-                ErrorCodes::USER_NOT_FOUND_MESSAGE
+                ErrorCodes::PARAMETER_INVALID,
+                ErrorCodes::PARAMETER_INVALID_MESSAGE
             );
         }
 
         $user = User::where('appuid', $loginParameters['appuid'])->first();
+
+        // Regenerate Api Token
         $token = $user->generateApiToken();
 
         // TODO: update app update fields below !!
@@ -47,6 +51,15 @@ class AuthController extends Controller
             'app_language'
         );
 
+        // Validate Parameters
+        $canRegister = User::validateForRegister($registerParameters);
+        if (!$canRegister) {
+            return Response::fail(
+                ErrorCodes::PARAMETER_INVALID,
+                ErrorCodes::PARAMETER_INVALID_MESSAGE
+            );
+        }
+
         $userExists = User::where('appuid', $registerParameters['appuid'])->exists();
         if ($userExists) {
             return Response::fail(
@@ -55,22 +68,14 @@ class AuthController extends Controller
             );
         }
 
-        $canRegister = User::validateForRegister($registerParameters);
-        if (!$canRegister) {
-            return Response::fail(
-                ErrorCodes::REGISTER_PARAMETER_INVALID,
-                ErrorCodes::REGISTER_PARAMETER_INVALID_MESSAGE
-            );
-        }
-
         User::create($registerParameters);
 
         return Response::success();
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        User::validApiToken($request->header('X-Token'))->update([
+        WSHelper::getUserModel()->update([
             'api_token' => null,
             'api_token_expires_at' => null,
         ]);

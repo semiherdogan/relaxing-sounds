@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\User;
 use App\Webservice\ErrorCodes;
 use App\Webservice\Response;
+use App\Webservice\WSHelper;
 use Closure;
 
 class ApiTokenMiddleware
@@ -18,10 +19,9 @@ class ApiTokenMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $headerToken = $request->header('X-Token');
-        $headerTokenExists = User::validApiToken($headerToken)->exists();
+        $user = WSHelper::getUser();
 
-        if (!$headerToken || !$headerTokenExists) {
+        if (!$user) {
             return Response::fail(
                 ErrorCodes::TOKEN_INVALID,
                 ErrorCodes::TOKEN_INVALID_MESSAGE
