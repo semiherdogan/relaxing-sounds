@@ -85,7 +85,7 @@ class User extends Authenticatable
     public static function validateForRegister($data)
     {
         $validator = Validator::make($data, [
-            'appuid'            => 'required|unique:users',
+            'appuid'            => 'required', /*|unique:users*/
             'app_version'       => 'required',
             'language_version'  => 'required',
             'app_language'      => 'required',

@@ -47,6 +47,14 @@ class AuthController extends Controller
             'app_language'
         );
 
+        $userExists = User::where('appuid', $registerParameters['appuid'])->exists();
+        if ($userExists) {
+            return Response::fail(
+                ErrorCodes::REGISTER_USER_EXISTS,
+                ErrorCodes::REGISTER_USER_EXISTS_MESSAGE
+            );
+        }
+
         $canRegister = User::validateForRegister($registerParameters);
         if (!$canRegister) {
             return Response::fail(
