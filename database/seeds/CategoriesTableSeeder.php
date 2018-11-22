@@ -12,9 +12,9 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            ['name' => 'Test Category 1'],
-            ['name' => 'Test Category 2'],
-            ['name' => 'Test Category 3'],
+            ['name' => 'Test Category 1', 'order' => 1],
+            ['name' => 'Test Category 2', 'order' => 2],
+            ['name' => 'Test Category 3', 'order' => 3],
         ];
 
         \App\Category::insert($categories);
