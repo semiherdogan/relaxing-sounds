@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * Login
+     */
     public function login(Request $request)
     {
         $loginParameters = $request->only(
@@ -49,6 +55,12 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * Register
+     */
     public function register(Request $request)
     {
         $registerParameters = $request->only(
@@ -81,6 +93,11 @@ class AuthController extends Controller
         return Response::success();
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * Logout
+     */
     public function logout()
     {
         WSHelper::getUserModel()->update([
