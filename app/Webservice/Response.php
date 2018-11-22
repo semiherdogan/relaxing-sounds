@@ -10,7 +10,7 @@ class Response
      *
      * Returns Success Response
      */
-    public static function success($data)
+    public static function success($data = null)
     {
         return self::send(
             ErrorCodes::SUCCESS,

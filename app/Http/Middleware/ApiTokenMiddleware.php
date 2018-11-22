@@ -19,7 +19,8 @@ class ApiTokenMiddleware
     public function handle($request, Closure $next)
     {
         $headerToken = $request->header('X-Token');
-        $headerTokenExists = User::apiToken($headerToken)->exists();
+        $headerTokenExists = User::validApiToken($headerToken)->exists();
+
         if (!$headerToken || !$headerTokenExists) {
             return Response::fail(
                 ErrorCodes::TOKEN_INVALID,
