@@ -68,7 +68,7 @@ class User extends Authenticatable
     public static function validateForLogin($data)
     {
         $validator = Validator::make($data, [
-            'appuid'            => 'required|exists:users',
+            'appuid'            => 'required', /*|exists:users*/
             'app_version'       => 'required',
             'language_version'  => 'required'
         ]);

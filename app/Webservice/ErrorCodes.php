@@ -16,10 +16,7 @@ abstract class ErrorCodes
     const TOKEN_INVALID = 2;
     const TOKEN_INVALID_MESSAGE = 'Api token invalid';
 
-    const USER_NOT_FOUND = 10;
-    const USER_NOT_FOUND_MESSAGE = 'User not found';
-
-    const LOGIN_USER_NOT_EXISTS = 11;
+    const LOGIN_USER_NOT_EXISTS = 10;
     const LOGIN_USER_NOT_EXISTS_MESSAGE = 'User not exists';
 
     const REGISTER_USER_EXISTS = 12;
@@ -28,7 +25,7 @@ abstract class ErrorCodes
     const SOUND_NOT_FOUND = 20;
     const SOUND_NOT_FOUND_MESSAGE = 'Sound not found';
 
-    const PARAMETER_INVALID = 13;
+    const PARAMETER_INVALID = 30;
     const PARAMETER_INVALID_MESSAGE = 'Invalid or missing parameters';
 
     const METHOD_NOT_EXISTS = 404;

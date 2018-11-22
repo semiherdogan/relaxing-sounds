@@ -28,9 +28,16 @@ class AuthController extends Controller
             );
         }
 
+        // Check if user exists
         $user = User::where('appuid', $loginParameters['appuid'])->first();
+        if (!$user) {
+            return Response::fail(
+                ErrorCodes::LOGIN_USER_NOT_EXISTS,
+                ErrorCodes::LOGIN_USER_NOT_EXISTS_MESSAGE
+            );
+        }
 
-        // Regenerate Api Token
+        // Regenerate user api token
         $token = $user->generateApiToken();
 
         // TODO: update app update fields below !!
