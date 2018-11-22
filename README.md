@@ -23,3 +23,19 @@
 
 # Notes
 * After successful login header "X-Token" parameter should send with all request with a value of users api_token.
+
+
+# Request Examples
+* Register
+    * `curl --request POST \
+         --url http://relax.test/api/register \
+         --form appuid=xxxxx \
+         --form app_version=1.12 \
+         --form language_version=1.12 \
+         --form app_language=en`
+* Login
+    * `curl --request POST \
+         --url http://relax.test/api/login \
+         --form appuid=xxxxx \
+         --form app_version=1.2 \
+         --form language_version=1.2`
