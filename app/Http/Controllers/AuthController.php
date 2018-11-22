@@ -60,6 +60,7 @@ class AuthController extends Controller
             );
         }
 
+        // Check if user exists
         $userExists = User::where('appuid', $registerParameters['appuid'])->exists();
         if ($userExists) {
             return Response::fail(
