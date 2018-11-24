@@ -5,14 +5,12 @@
 * [API_URL] = https://example.com/api
 
 # Installation
+* `docker-compose up`
 * `cp .env.example .env`
+* Configure .env file
 * `composer install`
 * `php artisan key:generate`
-* Update database info in .env file
 * `php artisan migrate`
-
-# Notes
-* After successful login, header "X-Token" parameter should send with all requests with a value of user's api_token.
 
 # Requests
 * Register
@@ -68,6 +66,9 @@ curl --request DELETE \
   --url [API_URL]/favorites/1 \
   --header 'x-token: XXXX'
 ```
+
+# Notes
+* After successful login, header "X-Token" parameter should send with all requests with a value of user's api_token.
 
  # Error Codes
  * Can be found in [ErrorCodes.php](https://github.com/semiherdogan/relaxing-sounds/blob/master/app/Webservice/ErrorCodes.php)
