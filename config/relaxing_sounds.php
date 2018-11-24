@@ -10,6 +10,36 @@ return [
     | Defines cache duration for categories and sounds.
     |
     */
-    'cache_duration' => env('CACHE_DURATION', 60)
+    'cache_duration' => env('CACHE_DURATION', 60),
+
+    /*
+    |--------------------------------------------------------------------------
+    | App Version
+    |--------------------------------------------------------------------------
+    |
+    | Current app version
+    |
+    */
+    'app_version' => env('APP_VERSION'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Language Version
+    |--------------------------------------------------------------------------
+    |
+    | Defines current app version
+    |
+    */
+    'language_version' => env('LANGUAGE_VERSION'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Min App Version
+    |--------------------------------------------------------------------------
+    |
+    | Minimum app version to use without update.
+    |
+    */
+    'min_app_version' => env('MIN_APP_VERSION'),
 
 ];

@@ -47,12 +47,11 @@ class AuthController extends Controller
             // Regenerate user api token
             $token = $user->generateApiToken();
 
-            // TODO: update app update fields below !!
             return Response::success([
                 'api_token'         => $token,
-                'force_update'      => false,
-                'soft_update'       => true,
-                'language_update'   => true,
+                'force_update'      => $loginParameters['app_version'] < config('relaxing_sounds.min_app_version'),
+                'soft_update'       => $loginParameters['app_version'] < config('relaxing_sounds.app_version'),
+                'language_update'   => $loginParameters['language_version'] < config('relaxing_sounds.language_version'),
             ]);
         } catch (\Exception $e) {
             \Log::info('Error on login');
