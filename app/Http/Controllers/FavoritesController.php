@@ -45,9 +45,8 @@ class FavoritesController extends Controller
 
         $user = WSHelper::getUser();
 
+        // If sound already favored return success
         $soundAlreadyFavored = $user->favorites->contains('sound_id', $soundId);
-
-        // If soun already favored return success
         if ($soundAlreadyFavored) {
             return Response::success();
         }
