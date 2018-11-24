@@ -10,7 +10,7 @@ use App\Webservice\WSHelper;
 class FavoritesController extends Controller
 {
     /**
-     * @return \Illuminate\Http\JsonResponse3
+     * @return \Illuminate\Http\JsonResponse
      *
      * Returns user's favored sounds
      */
@@ -47,12 +47,20 @@ class FavoritesController extends Controller
 
         $soundAlreadyFavored = $user->favorites->contains('sound_id', $soundId);
 
-        if (!$soundAlreadyFavored) {
-            // Add sound to user's favorites
-            WSHelper::getUser()->favored($soundId);
+        // If soun already favored return success
+        if ($soundAlreadyFavored) {
+            return Response::success();
         }
 
-        return Response::success();
+        try {
+            // Add sound to user's favorites
+            WSHelper::getUser()->favored($soundId);
+            return Response::success();
+        } catch (\Exception $e) {
+            \Log::info('Error on storing favored');
+            \Log::error($e);
+            return Response::serverError();
+        }
     }
 
     /**
@@ -72,9 +80,14 @@ class FavoritesController extends Controller
             );
         }
 
-        // Delete sound from favorites
-        WSHelper::getUser()->unFavored($soundId);
-
-        return Response::success();
+        try {
+            // Delete sound from favorites
+            WSHelper::getUser()->unFavored($soundId);
+            return Response::success();
+        } catch (\Exception $e) {
+            \Log::info('Error on deleting favored');
+            \Log::error($e);
+            return Response::serverError();
+        }
     }
 }

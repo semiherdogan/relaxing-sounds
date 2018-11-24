@@ -43,16 +43,22 @@ class AuthController extends Controller
             );
         }
 
-        // Regenerate user api token
-        $token = $user->generateApiToken();
+        try {
+            // Regenerate user api token
+            $token = $user->generateApiToken();
 
-        // TODO: update app update fields below !!
-        return Response::success([
-            'api_token'         => $token,
-            'force_update'      => false,
-            'soft_update'       => true,
-            'language_update'   => true,
-        ]);
+            // TODO: update app update fields below !!
+            return Response::success([
+                'api_token'         => $token,
+                'force_update'      => false,
+                'soft_update'       => true,
+                'language_update'   => true,
+            ]);
+        } catch (\Exception $e) {
+            \Log::info('Error on login');
+            \Log::error($e);
+            return Response::serverError();
+        }
     }
 
     /**
@@ -88,9 +94,15 @@ class AuthController extends Controller
             );
         }
 
-        User::create($registerParameters);
-
-        return Response::success();
+        try {
+            // Create User
+            User::create($registerParameters);
+            return Response::success();
+        } catch (\Exception $e) {
+            \Log::info('Error on register');
+            \Log::error($e);
+            return Response::serverError();
+        }
     }
 
     /**
@@ -100,11 +112,17 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        WSHelper::getUserModel()->update([
-            'api_token' => null,
-            'api_token_expires_at' => null,
-        ]);
+        try {
+            WSHelper::getUserModel()->update([
+                'api_token' => null,
+                'api_token_expires_at' => null,
+            ]);
 
-        return Response::success();
+            return Response::success();
+        } catch (\Exception $e) {
+            \Log::info('Error on logout');
+            \Log::error($e);
+            return Response::serverError();
+        }
     }
 }

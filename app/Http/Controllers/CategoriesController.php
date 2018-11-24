@@ -10,8 +10,8 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        // Cache results for 30 minutes
-        $categories = Cache::remember('categories', 30, function() {
+        // Get result and cache for given time in .env
+        $categories = Cache::remember('categories', config('relaxing_sounds.cache_duration'), function() {
             return Category::select('id', 'name', 'order', 'image')
                 ->orderBy('order')
                 ->get();

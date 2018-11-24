@@ -37,6 +37,21 @@ class Response
     }
 
     /**
+     * @param $data
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * Return Server Error (500)
+     */
+    public static function serverError($data = null)
+    {
+        return self::send(
+            ErrorCodes::SERVER_ERROR,
+            ErrorCodes::SERVER_ERROR_MESSAGE,
+            $data
+        );
+    }
+
+    /**
      * @param $errorCode
      * @param $errorMessage
      * @param $data
